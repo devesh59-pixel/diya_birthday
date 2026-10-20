@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#060511">
+  <meta name="description" content="Tonight, the universe celebrates you. An interactive birthday experience for Diya.">
+  <title>Happy Birthday Diya ✦ A Universe for You</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Atmosphere backdrop & canvas -->
+  <div class="atmosphere"></div>
+  <canvas id="space" aria-hidden="true"></canvas>
+  <div class="grain"></div>
+
+  <!-- Top Navigation Bar -->
+  <header class="topbar">
+    <div class="brand"><b aria-hidden="true">✧</b> A universe for Diya</div>
+    <div class="tools">
+      <a class="nav-link" href="#candle-section">🕯️ Candle</a>
+      <a class="nav-link" href="#wishes-section">✨ Wishes</a>
+      <a class="nav-link" href="#brother-section">💌 From Brother</a>
+      <button class="icon-btn" id="motion" aria-pressed="false">Pause motion</button>
+      <button class="icon-btn" id="sound" aria-pressed="false">Sound off ♫</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <p class="eyebrow entry">The stars aligned for this day</p>
+      <h1 class="entry" id="title">
+        <span>Happy</span>
+        <em>Birthday Diya.</em>
+      </h1>
+      <p class="sub entry">
+        Of all the billion moments in this infinite cosmos,<br>
+        this whole universe pauses to celebrate you.
+      </p>
+      <div class="cta-wrap entry">
+        <button class="cta" id="celebrate">Make the universe celebrate <span aria-hidden="true">✧</span></button>
+      </div>
+      <p class="hint">Move your cursor · touch the screen · leave a trail of stardust</p>
+      <span class="orbital-label">One of one. Just like you.</span>
+      
+      <div class="bottom">
+        <span class="live"><i></i> A little infinity, just for you</span>
+        <a class="scroll" href="#candle-section">Blow the Candle ↓</a>
+        <span class="edition">Chapter 2026 Begins</span>
+      </div>
+    </section>
+
+    <!-- Interactive Candle Section -->
+    <section class="candle-section" id="candle-section">
+      <div class="section-header">
+        <span class="index">✧ &nbsp; THE BIRTHDAY RITUAL</span>
+        <h2>Make a Wish &amp; <em>Blow the Candle</em></h2>
+        <p class="candle-tagline">Close your eyes, think of the dream closest to your heart, and blow out the flame.</p>
+      </div>
+
+      <div class="candle-stage">
+        <div class="candle-aura" id="candle-aura"></div>
+        <div class="candle-wrap" id="candle-wrap">
+          <!-- Smoke container when flame is blown -->
+          <div class="smoke-container" id="smoke-container"></div>
+          
+          <!-- Interactive Flame -->
+          <div class="flame-zone" id="flame-zone" role="button" tabindex="0" aria-label="Tap to blow out the candle">
+            <div class="flame" id="flame">
+              <div class="flame-core"></div>
+            </div>
+            <div class="flame-halo"></div>
+          </div>
+
+          <div class="wick"></div>
+          <div class="wax-top"></div>
+          <div class="candle-cylinder">
+            <div class="wax-drips">
+              <span class="drip drip-1"></span>
+              <span class="drip drip-2"></span>
+              <span class="drip drip-3"></span>
+            </div>
+            <div class="constellation-art">
+              <span>✦</span><span>·</span><span>⋆</span><span>✧</span>
+            </div>
+          </div>
+          <div class="candle-plate"></div>
+        </div>
+
+        <div class="candle-feedback">
+          <p class="candle-status" id="candle-status">
+            <span class="sparkle-icon">✨</span> The flame is burning bright. <b>Tap the flame</b> to blow it out!
+          </p>
+          <div class="candle-action-btns">
+            <button class="cta secondary-cta" id="blow-btn">Blow Out Candle 💨</button>
+            <button class="cta primary-cta hidden" id="relight-btn">Relight Candle ✦</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Wishes Section -->
+    <section class="wishes-section" id="wishes-section">
+      <div class="section-header">
+        <span class="index">✧ &nbsp; CONSTELLATIONS OF BLESSINGS</span>
+        <h2>Wishes Written in <em>the Stars</em></h2>
+        <p class="wishes-tagline">Tap on any card to flip it and unlock a special wish written exclusively for you.</p>
+      </div>
+
+      <div class="wishes-grid">
+        <!-- Card 1 -->
+        <div class="wish-flip-card" tabindex="0" role="button" aria-label="Wish 1: Celestial Starlight">
+          <div class="card-inner">
+            <div class="card-front">
+              <div class="card-symbol">✨</div>
+              <span class="card-pill">Wish 01</span>
+              <h3>Celestial Starlight</h3>
+              <p class="card-peek">Tap to flip &amp; read ✦</p>
+            </div>
+            <div class="card-back">
+              <div class="card-back-icon">✧</div>
+              <h4>Endless Clarity &amp; Light</h4>
+              <p>May your journey ahead be blessed with pure clarity, peace in your heart, and the courage to chase every single aspiration.</p>
+              <span class="card-sig">Happy Birthday Diya</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="wish-flip-card" tabindex="0" role="button" aria-label="Wish 2: Infinite Laughter">
+          <div class="card-inner">
+            <div class="card-front">
+              <div class="card-symbol">💫</div>
+              <span class="card-pill">Wish 02</span>
+              <h3>Infinite Laughter</h3>
+              <p class="card-peek">Tap to flip &amp; read ✦</p>
+            </div>
+            <div class="card-back">
+              <div class="card-back-icon">🌙</div>
+              <h4>Pure Joy &amp; Smiles</h4>
+              <p>May you always find reasons to laugh until your stomach hurts, surrounded by genuine souls who cherish your radiant energy.</p>
+              <span class="card-sig">Keep Smiling Always</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="wish-flip-card" tabindex="0" role="button" aria-label="Wish 3: Unstoppable Dreams">
+          <div class="card-inner">
+            <div class="card-front">
+              <div class="card-symbol">🪐</div>
+              <span class="card-pill">Wish 03</span>
+              <h3>Unstoppable Dreams</h3>
+              <p class="card-peek">Tap to flip &amp; read ✦</p>
+            </div>
+            <div class="card-back">
+              <div class="card-back-icon">✦</div>
+              <h4>Every Mountain Moved</h4>
+              <p>May every dream you quietly whisper to the stars unfold in broad daylight. You possess a quiet resilience that can conquer worlds.</p>
+              <span class="card-sig">Believe In You</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="wish-flip-card" tabindex="0" role="button" aria-label="Wish 4: Sweet Serendipity">
+          <div class="card-inner">
+            <div class="card-front">
+              <div class="card-symbol">🔮</div>
+              <span class="card-pill">Wish 04</span>
+              <h3>Serendipity</h3>
+              <p class="card-peek">Tap to flip &amp; read ✦</p>
+            </div>
+            <div class="card-back">
+              <div class="card-back-icon">✨</div>
+              <h4>Beautiful Surprises</h4>
+              <p>May life surprise you in the sweetest ways: impromptu road trips, warm cups of coffee, unforgettable sunsets, and little everyday miracles.</p>
+              <span class="card-sig">Magic Everywhere</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="wish-flip-card" tabindex="0" role="button" aria-label="Wish 5: Inner Sanctuary">
+          <div class="card-inner">
+            <div class="card-front">
+              <div class="card-symbol">🌸</div>
+              <span class="card-pill">Wish 05</span>
+              <h3>Inner Peace</h3>
+              <p class="card-peek">Tap to flip &amp; read ✦</p>
+            </div>
+            <div class="card-back">
+              <div class="card-back-icon">✧</div>
+              <h4>Calm in the Chaos</h4>
+              <p>No matter how fast the world moves around you, may you always preserve your calm, graceful center, loving yourself a little more every day.</p>
+              <span class="card-sig">Peace &amp; Grace</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="wish-flip-card" tabindex="0" role="button" aria-label="Wish 6: The Diya Special">
+          <div class="card-inner">
+            <div class="card-front">
+              <div class="card-symbol">💖</div>
+              <span class="card-pill">Wish 06</span>
+              <h3>One in a Universe</h3>
+              <p class="card-peek">Tap to flip &amp; read ✦</p>
+            </div>
+            <div class="card-back">
+              <div class="card-back-icon">👑</div>
+              <h4>The Diya Aura</h4>
+              <p>To the girl whose presence is like warm golden sunshine — never change your genuine kindness. The universe is genuinely luckier with you in it.</p>
+              <span class="card-sig">Truly Unmatched</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Release a Wish Into The Stars Interactive Box -->
+      <div class="wish-caster">
+        <div class="wish-caster-box">
+          <div class="caster-icon">💌</div>
+          <h3>Send a Wish to the Cosmos</h3>
+          <p>Type a custom wish or prayer for Diya. When released, it will launch into the night sky as a glowing shooting star!</p>
+          <form class="caster-form" id="caster-form">
+            <div class="caster-input-row">
+              <input type="text" id="caster-input" placeholder="e.g. May all your dreams come true, Diya! 🌟" maxlength="100" required>
+              <button type="submit" class="cta submit-wish-cta">Launch into Orbit 🚀</button>
+            </div>
+          </form>
+          <div class="caster-stars-shelf" id="wishes-shelf">
+            <!-- Floating star tags will appear here dynamically -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Wishes from Brother Section (Sabse Neeche) -->
+    <section class="brother-section" id="brother-section">
+      <div class="section-header">
+        <span class="index">✧ &nbsp; FROM YOUR BROTHER ✧</span>
+        <h2>Wishes for You, <em>From Your Brother</em></h2>
+        <p class="brother-tagline">Wishing you the absolute happiest birthday, Diya!</p>
+      </div>
+
+      <div class="brother-card">
+        <div class="brother-badge">
+          <span>💌</span> For Diya
+        </div>
+
+        <div class="brother-letter">
+          <p class="brother-highlight">
+            Happy Birthday, Diya! 🎉
+          </p>
+          <p>
+            Wishing you a fantastic year ahead full of happiness, peace of mind, and huge success in everything you take up.
+          </p>
+
+          <div class="brother-wishes-grid">
+            <div class="brother-wish-item">
+              <div class="item-icon">🌟</div>
+              <div class="item-text">
+                <h4>Big Success</h4>
+                <p>May all your hard work pay off and every goal you aim for turn into a win.</p>
+              </div>
+            </div>
+
+            <div class="brother-wish-item">
+              <div class="item-icon">🛡️</div>
+              <div class="item-text">
+                <h4>Always Got Your Back</h4>
+                <p>Whatever happens or whatever you need, you know your brother is always there for you.</p>
+              </div>
+            </div>
+
+            <div class="brother-wish-item">
+              <div class="item-icon">😄</div>
+              <div class="item-text">
+                <h4>Good Vibes &amp; Smiles</h4>
+                <p>Keep laughing, stay happy, and enjoy every single moment of your special day.</p>
+              </div>
+            </div>
+
+            <div class="brother-wish-item">
+              <div class="item-icon">✨</div>
+              <div class="item-text">
+                <h4>Keep Shining</h4>
+                <p>Stay the awesome person you are and keep achieving great things in life.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="brother-closing">
+            <div class="brother-sign">
+              <span class="sign-tag">Have the best birthday,</span>
+              <strong class="sign-name">From Your Brother ✦</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dedication Letter Section -->
+    <section class="dedication" id="letter">
+      <span class="index">✧ &nbsp; A FINAL DEDICATION</span>
+      <h2>May your next trip around the sun<br>feel a little more <em>like magic.</em></h2>
+      <p>
+        More midnight laughter. More impossible dreams coming true.<br>
+        More moments that make you smile and remember how loved you are.<br>
+        Today, and every day after.
+      </p>
+      <div class="signature">With endless stardust &amp; warmest wishes ✧</div>
+    </section>
+  </main>
+
+  <!-- Celebration Modal Dialog -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="wish-title">
+    <div class="wish-card">
+      <div class="symbol" aria-hidden="true">✧</div>
+      <p class="eyebrow" style="justify-content:center">Your wish is out there</p>
+      <h2 id="wish-title">The universe looks<br>good on you.</h2>
+      <p>
+        Here’s to a year that surprises you in the most beautiful ways.<br>
+        Dream a little bigger. Shine a little louder.<br>
+        Happy birthday, you wonderful human!
+      </p>
+      <button class="cta" id="close">Keep the magic going <span aria-hidden="true">↗</span></button>
+    </div>
+  </div>
+
+  <!-- Particle / Fireworks effects canvas overlay -->
+  <canvas id="effects" aria-hidden="true"></canvas>
+
+  <script src="script.js"></script>
+</body>
+</html>
