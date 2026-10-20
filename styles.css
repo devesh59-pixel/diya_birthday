@@ -11,20 +11,36 @@ html {
   background: #060511;
   scroll-behavior: smooth;
   color-scheme: dark;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
   margin: 0;
+  padding: 0;
   color: #f8f3ff;
   font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
+  width: 100%;
   min-height: 100svh;
   background-color: #060511;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 button, input {
   font: inherit;
+}
+
+main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
 }
 
 /* Canvases */
@@ -47,12 +63,14 @@ canvas {
 /* Background Atmosphere & Texture */
 .atmosphere {
   position: fixed;
-  inset: -20%;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
   background: 
-    radial-gradient(ellipse at 70% 25%, rgba(84, 31, 130, 0.25), transparent 48%),
-    radial-gradient(ellipse at 20% 80%, rgba(18, 60, 98, 0.28), transparent 45%),
-    radial-gradient(ellipse at 50% 50%, rgba(135, 45, 142, 0.12), transparent 55%);
+    radial-gradient(ellipse at 70% 25%, rgba(84, 31, 130, 0.28), transparent 50%),
+    radial-gradient(ellipse at 20% 80%, rgba(18, 60, 98, 0.3), transparent 48%),
+    radial-gradient(ellipse at 50% 50%, rgba(135, 45, 142, 0.14), transparent 55%);
   animation: drift 20s ease-in-out infinite alternate;
   z-index: 0;
 }
@@ -60,6 +78,8 @@ canvas {
 .grain {
   position: fixed;
   inset: 0;
+  width: 100%;
+  height: 100%;
   opacity: 0.045;
   pointer-events: none;
   z-index: 5;
@@ -67,13 +87,16 @@ canvas {
 }
 
 /* ==========================================================================
-   Header & Top Navigation
+   Header & Top Navigation (Laptop / Desktop)
    ========================================================================== */
 .topbar {
   position: absolute;
   top: 28px;
-  left: 4.5%;
-  right: 4.5%;
+  left: 0;
+  right: 0;
+  width: 92%;
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -98,6 +121,12 @@ canvas {
   text-shadow: 0 0 10px rgba(227, 190, 255, 0.8);
 }
 
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .tools {
   display: flex;
   align-items: center;
@@ -115,6 +144,7 @@ canvas {
   letter-spacing: 1px;
   backdrop-filter: blur(10px);
   transition: all 0.25s ease;
+  white-space: nowrap;
 }
 
 .nav-link:hover {
@@ -135,6 +165,7 @@ canvas {
   cursor: pointer;
   backdrop-filter: blur(10px);
   transition: all 0.25s ease;
+  white-space: nowrap;
 }
 
 .icon-btn:hover {
@@ -149,33 +180,42 @@ canvas {
 .hero {
   position: relative;
   z-index: 2;
+  width: 100%;
+  max-width: 1200px;
   min-height: 100svh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 110px 20px 100px;
+  padding: 120px 20px 90px;
+  margin: 0 auto;
+  box-sizing: border-box;
   perspective: 1000px;
 }
 
 .eyebrow {
   font-size: 11px;
-  letter-spacing: 5px;
+  letter-spacing: 4px;
   color: #d7b7ec;
   text-transform: uppercase;
-  margin: 0 0 28px;
+  margin: 0 auto 24px;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 16px;
+  width: 100%;
+  max-width: 100%;
+  text-align: center;
 }
 
 .eyebrow::before,
 .eyebrow::after {
   content: '';
   height: 1px;
-  width: 44px;
+  width: 40px;
   background: linear-gradient(90deg, transparent, #aa7bc0);
+  flex-shrink: 0;
 }
 
 .eyebrow::after {
@@ -185,10 +225,13 @@ canvas {
 h1 {
   font-family: 'Playfair Display', Georgia, serif;
   font-weight: 500;
-  font-size: clamp(68px, 12vw, 160px);
-  line-height: 0.96;
-  letter-spacing: -0.055em;
-  margin: 0;
+  font-size: clamp(52px, 11vw, 150px);
+  line-height: 1;
+  letter-spacing: -0.045em;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 100%;
+  text-align: center;
   filter: drop-shadow(0 0 45px rgba(188, 160, 255, 0.25));
   transition: transform 0.2s cubic-bezier(0.2, 0, 0.2, 1);
   will-change: transform;
@@ -205,24 +248,30 @@ h1 em {
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  padding: 0 0.15em 0.14em;
-  margin: 0 -0.15em;
+  padding: 0 0.05em 0.1em;
+  margin: 0;
   font-style: italic;
-  font-size: 0.74em;
+  font-size: 0.76em;
+  word-break: break-word;
 }
 
 .sub {
   font-size: 15px;
   line-height: 1.85;
   color: #b9b1cc;
-  max-width: 420px;
-  margin: 20px auto 30px;
+  max-width: 440px;
+  margin: 18px auto 28px;
   letter-spacing: 0.3px;
+  padding: 0 16px;
+  text-align: center;
 }
 
 /* Call to Action Button */
 .cta-wrap {
   position: relative;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
 }
 
 .cta-wrap::before {
@@ -243,7 +292,7 @@ h1 em {
   background: linear-gradient(110deg, rgba(157, 103, 202, 0.28), rgba(201, 139, 171, 0.2), rgba(163, 166, 250, 0.2));
   backdrop-filter: blur(14px);
   border-radius: 100px;
-  padding: 17px 32px;
+  padding: 16px 32px;
   cursor: pointer;
   letter-spacing: 0.5px;
   font-size: 13px;
@@ -267,16 +316,18 @@ h1 em {
 }
 
 .hint {
-  margin: 22px 0 0;
+  margin: 20px auto 0;
   font-size: 9.5px;
-  letter-spacing: 2.2px;
+  letter-spacing: 1.8px;
   text-transform: uppercase;
   color: #897c9b;
+  text-align: center;
+  padding: 0 16px;
 }
 
 .orbital-label {
   position: absolute;
-  right: 5%;
+  right: 4%;
   top: 42%;
   writing-mode: vertical-rl;
   color: #796694;
@@ -329,9 +380,11 @@ h1 em {
    ========================================================================== */
 .section-header {
   text-align: center;
+  width: 100%;
   max-width: 650px;
   margin: 0 auto 40px;
   padding: 0 20px;
+  box-sizing: border-box;
 }
 
 .index {
@@ -347,7 +400,7 @@ h1 em {
 .section-header h2 {
   font-family: 'Playfair Display', Georgia, serif;
   font-weight: 500;
-  font-size: clamp(34px, 5.5vw, 62px);
+  font-size: clamp(32px, 5vw, 58px);
   line-height: 1.15;
   margin: 0 0 16px;
   color: #ede2ff;
@@ -366,7 +419,8 @@ h1 em {
   color: #ad9fc2;
   font-size: 14px;
   line-height: 1.8;
-  margin: 0;
+  margin: 0 auto;
+  max-width: 500px;
 }
 
 /* ==========================================================================
@@ -375,12 +429,17 @@ h1 em {
 .candle-section {
   position: relative;
   z-index: 2;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
   min-height: 85svh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 90px 20px 80px;
+  box-sizing: border-box;
+  text-align: center;
   background: radial-gradient(circle at 50% 60%, rgba(93, 31, 148, 0.12), transparent 60%);
 }
 
@@ -390,14 +449,15 @@ h1 em {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 20px;
+  margin: 20px auto 0;
+  width: 100%;
 }
 
 .candle-aura {
   position: absolute;
   top: 15px;
-  width: 260px;
-  height: 260px;
+  width: 250px;
+  height: 250px;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(255, 174, 69, 0.32) 0%, rgba(247, 102, 162, 0.18) 40%, transparent 70%);
   filter: blur(28px);
@@ -419,6 +479,7 @@ h1 em {
   cursor: pointer;
   user-select: none;
   padding: 30px 40px;
+  margin: 0 auto;
 }
 
 /* Flame & Wick */
@@ -430,6 +491,7 @@ h1 em {
   justify-content: center;
   cursor: pointer;
   outline: none;
+  margin: 0 auto;
 }
 
 .flame {
@@ -474,14 +536,12 @@ h1 em {
   animation: halo-glow 2s ease-in-out infinite alternate;
 }
 
-/* Extinguished Flame */
 .flame.extinguished {
   opacity: 0;
   transform: scale(0.1) translateY(20px);
   pointer-events: none;
 }
 
-/* Smoke particles when flame goes out */
 .smoke-container {
   position: absolute;
   bottom: 235px;
@@ -500,7 +560,6 @@ h1 em {
   animation: smoke-rise 2.2s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
 }
 
-/* Candle Body */
 .wick {
   width: 3.5px;
   height: 14px;
@@ -577,18 +636,19 @@ h1 em {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.3);
 }
 
-/* Feedback & Action Buttons */
 .candle-feedback {
   text-align: center;
   margin-top: 25px;
+  width: 100%;
 }
 
 .candle-status {
   font-size: 13px;
   color: #dfcefc;
   letter-spacing: 0.5px;
-  margin: 0 0 16px;
+  margin: 0 auto 16px;
   min-height: 22px;
+  max-width: 480px;
 }
 
 .candle-status b {
@@ -632,9 +692,11 @@ h1 em {
 .wishes-section {
   position: relative;
   z-index: 2;
-  padding: 100px 24px 90px;
+  width: 100%;
   max-width: 1100px;
   margin: 0 auto;
+  padding: 100px 24px 80px;
+  box-sizing: border-box;
 }
 
 .wishes-grid {
@@ -642,14 +704,16 @@ h1 em {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 24px;
   margin-bottom: 60px;
+  width: 100%;
 }
 
 .wish-flip-card {
   background: transparent;
   perspective: 1000px;
-  height: 250px;
+  height: 260px;
   cursor: pointer;
   outline: none;
+  width: 100%;
 }
 
 .card-inner {
@@ -689,16 +753,12 @@ h1 em {
   backdrop-filter: blur(14px);
   border: 1px solid rgba(255, 255, 255, 0.12);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
 }
 
 .card-front {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(133, 76, 213, 0.12) 100%);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-}
-
-.wish-flip-card:hover .card-front {
-  border-color: rgba(206, 169, 255, 0.4);
-  box-shadow: 0 15px 35px rgba(125, 68, 199, 0.25);
 }
 
 .card-symbol {
@@ -734,9 +794,8 @@ h1 em {
   letter-spacing: 0.5px;
 }
 
-/* Card Back Side */
 .card-back {
-  background: linear-gradient(135deg, rgba(39, 14, 66, 0.85) 0%, rgba(14, 25, 59, 0.9) 100%);
+  background: linear-gradient(135deg, rgba(39, 14, 66, 0.9) 0%, rgba(14, 25, 59, 0.94) 100%);
   transform: rotateY(180deg);
   border-color: rgba(220, 185, 255, 0.35);
   box-shadow: 0 15px 40px rgba(97, 43, 166, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
@@ -750,7 +809,7 @@ h1 em {
 
 .card-back h4 {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: 17px;
+  font-size: 18px;
   color: #ffe9f6;
   margin: 0 0 10px;
 }
@@ -775,10 +834,11 @@ h1 em {
    ========================================================================== */
 .wish-caster {
   margin-top: 30px;
+  width: 100%;
 }
 
 .wish-caster-box {
-  background: linear-gradient(135deg, rgba(35, 18, 59, 0.4) 0%, rgba(19, 11, 38, 0.6) 100%);
+  background: linear-gradient(135deg, rgba(35, 18, 59, 0.45) 0%, rgba(19, 11, 38, 0.65) 100%);
   border: 1px solid rgba(215, 175, 255, 0.2);
   border-radius: 24px;
   padding: 40px 30px;
@@ -787,6 +847,7 @@ h1 em {
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
   max-width: 750px;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .caster-icon {
@@ -822,6 +883,7 @@ h1 em {
   border-radius: 50px;
   border: 1px solid rgba(255, 255, 255, 0.15);
   transition: border-color 0.25s, box-shadow 0.25s;
+  box-sizing: border-box;
 }
 
 .caster-input-row:focus-within {
@@ -836,7 +898,7 @@ h1 em {
   outline: none;
   color: #ffffff;
   padding: 10px 18px;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .caster-input-row input::placeholder {
@@ -881,20 +943,24 @@ h1 em {
 .brother-section {
   position: relative;
   z-index: 2;
-  padding: 100px 24px 70px;
-  max-width: 920px;
+  width: 100%;
+  max-width: 900px;
   margin: 0 auto;
+  padding: 90px 20px 70px;
+  box-sizing: border-box;
+  text-align: center;
 }
 
 .brother-tagline {
   color: #ad9fc2;
   font-size: 14px;
   line-height: 1.8;
-  margin: 0;
+  margin: 0 auto;
+  max-width: 500px;
 }
 
 .brother-card {
-  background: linear-gradient(135deg, rgba(38, 20, 64, 0.6) 0%, rgba(18, 12, 38, 0.8) 100%);
+  background: linear-gradient(135deg, rgba(38, 20, 64, 0.65) 0%, rgba(18, 12, 38, 0.85) 100%);
   border: 1px solid rgba(226, 185, 255, 0.28);
   border-radius: 28px;
   padding: 45px 36px;
@@ -902,6 +968,8 @@ h1 em {
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45), 0 0 50px rgba(162, 102, 240, 0.15);
   position: relative;
   overflow: hidden;
+  box-sizing: border-box;
+  text-align: center;
 }
 
 .brother-card::before {
@@ -931,29 +999,32 @@ h1 em {
 
 .brother-highlight {
   font-family: 'Playfair Display', Georgia, serif;
-  font-style: italic;
-  font-size: clamp(19px, 2.5vw, 25px);
-  line-height: 1.6;
+  font-size: clamp(22px, 3vw, 28px);
+  line-height: 1.4;
   color: #fff4e8;
   background: linear-gradient(110deg, #fff7f1, #ffd2eb, #d8b7ff);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  margin-bottom: 20px;
+  margin: 0 auto 16px;
+  text-align: center;
 }
 
 .brother-letter p {
   color: #c5b6db;
   font-size: 14.5px;
   line-height: 1.85;
-  margin-bottom: 24px;
+  margin: 0 auto 24px;
+  max-width: 600px;
+  text-align: center;
 }
 
 .brother-wishes-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 16px;
-  margin: 28px 0 32px;
+  margin: 28px auto 32px;
+  width: 100%;
 }
 
 .brother-wish-item {
@@ -965,6 +1036,8 @@ h1 em {
   border-radius: 16px;
   padding: 16px 18px;
   transition: all 0.25s ease;
+  text-align: left;
+  box-sizing: border-box;
 }
 
 .brother-wish-item:hover {
@@ -977,6 +1050,7 @@ h1 em {
   font-size: 22px;
   line-height: 1;
   padding-top: 2px;
+  flex-shrink: 0;
 }
 
 .brother-wish-item h4 {
@@ -996,14 +1070,16 @@ h1 em {
 .brother-closing {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding-top: 22px;
-  margin-top: 15px;
+  margin-top: 20px;
+  text-align: center;
 }
 
 .brother-sign {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  margin-top: 14px;
+  align-items: center;
+  justify-content: center;
 }
 
 .sign-tag {
@@ -1025,19 +1101,22 @@ h1 em {
 .dedication {
   position: relative;
   z-index: 2;
-  min-height: 55svh;
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+  min-height: 50svh;
   padding: 100px 24px 90px;
   text-align: center;
-  background: linear-gradient(transparent, rgba(6, 5, 17, 0.95));
+  box-sizing: border-box;
 }
 
 .dedication h2 {
   font-family: 'Playfair Display', Georgia, serif;
   font-weight: 400;
-  font-size: clamp(30px, 5vw, 60px);
+  font-size: clamp(28px, 4.5vw, 54px);
   line-height: 1.3;
-  max-width: 800px;
-  margin: 24px auto;
+  max-width: 750px;
+  margin: 20px auto;
   color: #ded2ed;
 }
 
@@ -1058,6 +1137,7 @@ h1 em {
   letter-spacing: 3px;
   text-transform: uppercase;
   color: #baa4ce;
+  text-align: center;
 }
 
 /* ==========================================================================
@@ -1069,12 +1149,13 @@ h1 em {
   z-index: 90;
   display: grid;
   place-items: center;
-  background: rgba(6, 5, 17, 0.82);
+  background: rgba(6, 5, 17, 0.85);
   backdrop-filter: blur(18px);
   padding: 24px;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.5s ease, visibility 0.5s ease;
+  box-sizing: border-box;
 }
 
 .modal.open {
@@ -1084,36 +1165,38 @@ h1 em {
 
 .wish-card {
   text-align: center;
-  max-width: 580px;
-  padding: 48px 34px;
+  max-width: 560px;
+  width: 100%;
+  padding: 45px 30px;
   position: relative;
-  background: linear-gradient(135deg, rgba(35, 18, 59, 0.6) 0%, rgba(13, 10, 27, 0.8) 100%);
+  background: linear-gradient(135deg, rgba(35, 18, 59, 0.7) 0%, rgba(13, 10, 27, 0.9) 100%);
   border: 1px solid rgba(220, 180, 255, 0.28);
   border-radius: 30px;
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 50px rgba(180, 118, 255, 0.2);
+  box-sizing: border-box;
 }
 
 .wish-card .symbol {
-  font-size: 55px;
+  font-size: 50px;
   color: #ebc7fc;
   text-shadow: 0 0 50px #c983ff;
 }
 
 .wish-card h2 {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(36px, 6vw, 68px);
+  font-size: clamp(34px, 5.5vw, 64px);
   font-weight: 400;
   line-height: 1.08;
   letter-spacing: -1.5px;
-  margin: 20px 0;
+  margin: 18px 0;
   color: #ffffff;
 }
 
 .wish-card p {
   color: #b9a6cc;
   line-height: 1.85;
-  font-size: 14.5px;
-  margin-bottom: 30px;
+  font-size: 14px;
+  margin-bottom: 28px;
 }
 
 /* ==========================================================================
@@ -1215,112 +1298,159 @@ h1.entry { animation-delay: 0.25s; }
 }
 
 /* ==========================================================================
-   Responsive Adaptations for Phones & Tablets
+   📱 ULTRA POLISHED MOBILE ADAPTATIONS (For Phones & Tablets)
    ========================================================================== */
 @media (max-width: 768px) {
-  /* Prevent any horizontal overflow */
+  /* Strict horizontal confinement */
   html, body {
     overflow-x: hidden;
     width: 100%;
+    position: relative;
   }
 
-  /* Fixed, sleek glassmorphic top navigation */
+  main {
+    padding: 0;
+    width: 100%;
+  }
+
+  /* Sleek, 2-row Mobile Topbar (Brand + Audio on top row, Nav links below) */
   .topbar {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    padding: 10px 14px;
-    background: rgba(6, 5, 17, 0.78);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    width: 100%;
+    margin: 0;
+    padding: 10px 16px 8px;
+    background: rgba(6, 5, 17, 0.88);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     gap: 8px;
-    z-index: 80;
+    z-index: 100;
   }
 
   .brand {
-    font-size: 10px;
+    font-size: 10.5px;
     letter-spacing: 1.2px;
-    white-space: nowrap;
+  }
+
+  .brand b {
+    font-size: 18px;
   }
 
   .tools {
     display: flex;
     gap: 6px;
     align-items: center;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    max-width: calc(100% - 130px);
   }
 
-  .tools::-webkit-scrollbar {
-    display: none;
-  }
-
-  .nav-link, .icon-btn {
+  .tools .icon-btn {
     font-size: 9px;
-    padding: 6px 9px;
-    white-space: nowrap;
+    padding: 5px 10px;
     border-radius: 20px;
   }
 
-  /* Hero Section */
+  /* Centered Horizontal Navigation Chips */
+  .nav-links {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 2px 0 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+  }
+
+  .nav-links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-link {
+    font-size: 9.5px;
+    padding: 5px 11px;
+    border-radius: 20px;
+  }
+
+  /* Hero Section (Centering & Fluid Typography) */
   .hero {
-    padding-top: 100px;
-    padding-bottom: 70px;
-    min-height: 94svh;
+    padding-top: 115px;
+    padding-bottom: 50px;
+    min-height: 92svh;
+    width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
   }
 
   .eyebrow {
     font-size: 9px;
-    letter-spacing: 3px;
-    margin-bottom: 20px;
+    letter-spacing: 2px;
     gap: 10px;
+    margin: 0 auto 16px;
+    justify-content: center;
+    text-align: center;
   }
 
   .eyebrow::before, .eyebrow::after {
-    width: 24px;
+    width: 18px;
   }
 
   h1 {
-    font-size: clamp(44px, 12vw, 80px);
-    line-height: 1.02;
+    font-size: clamp(38px, 10.5vw, 68px);
+    line-height: 1.05;
     letter-spacing: -0.04em;
-    padding: 0 10px;
-    max-width: 100%;
-    word-break: break-word;
+    padding: 0 8px;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
   }
 
   h1 em {
-    font-size: 0.76em;
+    font-size: 0.78em;
     padding: 0 0.05em;
     margin: 0;
+    text-align: center;
   }
 
   .sub {
     font-size: 13.5px;
-    line-height: 1.75;
+    line-height: 1.7;
     max-width: 320px;
-    margin: 18px auto 26px;
-    padding: 0 12px;
+    margin: 16px auto 24px;
+    padding: 0 10px;
+    text-align: center;
+  }
+
+  .cta-wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
   }
 
   .cta {
-    padding: 14px 28px;
-    font-size: 12.5px;
+    padding: 14px 26px;
+    font-size: 12px;
     max-width: 90vw;
+    margin: 0 auto;
   }
 
   .hint {
-    font-size: 8.5px;
-    letter-spacing: 1.2px;
-    padding: 0 16px;
-    margin-top: 18px;
+    font-size: 8px;
+    letter-spacing: 1px;
+    margin-top: 16px;
+    text-align: center;
   }
 
   .orbital-label {
@@ -1328,14 +1458,15 @@ h1.entry { animation-delay: 0.25s; }
   }
 
   .bottom {
-    position: relative;
+    position: static;
     margin-top: 36px;
-    bottom: auto;
-    left: auto;
-    right: auto;
+    width: 100%;
+    display: flex;
     justify-content: center;
     gap: 16px;
     font-size: 8.5px;
+    letter-spacing: 1px;
+    text-align: center;
   }
 
   .bottom .edition {
@@ -1344,41 +1475,56 @@ h1.entry { animation-delay: 0.25s; }
 
   /* Candle Section */
   .candle-section {
-    padding: 70px 16px 60px;
+    padding: 60px 16px 50px;
     min-height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .section-header {
+    padding: 0 10px;
+    margin-bottom: 28px;
+    text-align: center;
   }
 
   .section-header h2 {
-    font-size: clamp(28px, 7.5vw, 42px);
+    font-size: clamp(26px, 7.5vw, 38px);
     line-height: 1.2;
+    text-align: center;
   }
 
   .candle-tagline, .wishes-tagline {
-    font-size: 13px;
+    font-size: 12.5px;
+    text-align: center;
+    padding: 0 8px;
   }
 
   .candle-wrap {
-    padding: 20px 20px;
+    padding: 16px 20px;
+    margin: 0 auto;
   }
 
   .candle-aura {
-    width: 190px;
-    height: 190px;
+    width: 180px;
+    height: 180px;
   }
 
   .candle-cylinder {
-    width: 66px;
-    height: 135px;
+    width: 62px;
+    height: 130px;
   }
 
   .wax-top {
-    width: 66px;
-    height: 15px;
+    width: 62px;
+    height: 14px;
   }
 
   .candle-plate {
-    width: 110px;
-    height: 15px;
+    width: 105px;
+    height: 14px;
   }
 
   .flame-zone {
@@ -1387,15 +1533,16 @@ h1.entry { animation-delay: 0.25s; }
   }
 
   .candle-status {
-    font-size: 12.5px;
+    font-size: 12px;
     line-height: 1.6;
-    padding: 0 12px;
+    padding: 0 10px;
+    text-align: center;
   }
 
   .candle-action-btns {
     flex-direction: column;
     width: 100%;
-    max-width: 260px;
+    max-width: 250px;
     margin: 0 auto;
     gap: 10px;
   }
@@ -1404,24 +1551,32 @@ h1.entry { animation-delay: 0.25s; }
     width: 100%;
   }
 
-  /* Wishes Flip Cards */
+  /* Wishes Section */
   .wishes-section {
-    padding: 70px 16px 60px;
+    padding: 60px 16px 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .wishes-grid {
     grid-template-columns: 1fr;
     gap: 16px;
-    margin-bottom: 45px;
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto 40px;
   }
 
   .wish-flip-card {
-    height: 250px;
+    height: 255px;
+    width: 100%;
   }
 
   .card-front, .card-back {
-    padding: 24px 18px;
+    padding: 22px 18px;
     border-radius: 18px;
+    text-align: center;
   }
 
   .card-front h3 {
@@ -1438,18 +1593,26 @@ h1.entry { animation-delay: 0.25s; }
   }
 
   /* Wish Caster */
+  .wish-caster {
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto;
+  }
+
   .wish-caster-box {
-    padding: 28px 16px;
+    padding: 26px 16px;
     border-radius: 20px;
+    width: 100%;
+    text-align: center;
   }
 
   .wish-caster-box h3 {
-    font-size: 22px;
+    font-size: 21px;
   }
 
   .wish-caster-box p {
-    font-size: 12.5px;
-    margin-bottom: 20px;
+    font-size: 12px;
+    margin-bottom: 18px;
   }
 
   .caster-input-row {
@@ -1458,56 +1621,64 @@ h1.entry { animation-delay: 0.25s; }
     padding: 8px;
     gap: 8px;
     background: rgba(255, 255, 255, 0.08);
+    width: 100%;
   }
 
   .caster-input-row input {
-    font-size: 16px; /* Prevents auto-zoom on iOS */
+    font-size: 16px;
     padding: 10px 14px;
     width: 100%;
+    text-align: center;
   }
 
   .submit-wish-cta {
     width: 100%;
-    padding: 12px 20px;
-  }
-
-  .star-wish-pill {
-    font-size: 11px;
-    padding: 7px 12px;
+    padding: 12px 18px;
   }
 
   /* Brother's Section */
   .brother-section {
-    padding: 70px 16px 60px;
+    padding: 60px 16px 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .brother-card {
-    padding: 28px 18px;
-    border-radius: 22px;
+    padding: 24px 16px;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+    text-align: center;
   }
 
   .brother-highlight {
     font-size: 21px;
-    line-height: 1.5;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
+    text-align: center;
   }
 
   .brother-letter p {
     font-size: 13.5px;
-    line-height: 1.75;
-    margin-bottom: 18px;
+    line-height: 1.7;
+    margin-bottom: 16px;
+    text-align: center;
   }
 
   .brother-wishes-grid {
     grid-template-columns: 1fr;
     gap: 12px;
-    margin: 20px 0;
+    margin: 20px auto;
+    width: 100%;
   }
 
   .brother-wish-item {
     padding: 13px 14px;
     border-radius: 14px;
     gap: 12px;
+    text-align: left;
   }
 
   .brother-wish-item h4 {
@@ -1521,21 +1692,26 @@ h1.entry { animation-delay: 0.25s; }
 
   .brother-sign .sign-name {
     font-size: 18px;
+    text-align: center;
   }
 
   /* Dedication Section */
   .dedication {
-    padding: 70px 16px 60px;
+    padding: 60px 16px 50px;
     min-height: auto;
+    width: 100%;
+    text-align: center;
   }
 
   .dedication h2 {
-    font-size: clamp(24px, 7vw, 36px);
+    font-size: clamp(23px, 6.8vw, 34px);
+    text-align: center;
   }
 
   .dedication p {
     font-size: 13px;
-    line-height: 1.8;
+    line-height: 1.75;
+    text-align: center;
   }
 
   /* Modal */
@@ -1544,8 +1720,9 @@ h1.entry { animation-delay: 0.25s; }
   }
 
   .wish-card {
-    padding: 32px 18px;
-    border-radius: 24px;
+    padding: 28px 18px;
+    border-radius: 22px;
+    width: 100%;
   }
 
   .wish-card .symbol {
@@ -1553,15 +1730,15 @@ h1.entry { animation-delay: 0.25s; }
   }
 
   .wish-card h2 {
-    font-size: clamp(28px, 8vw, 42px);
+    font-size: clamp(26px, 7.5vw, 38px);
     letter-spacing: -1px;
-    margin: 16px 0;
+    margin: 14px 0;
   }
 
   .wish-card p {
     font-size: 13px;
-    line-height: 1.7;
-    margin-bottom: 24px;
+    line-height: 1.65;
+    margin-bottom: 22px;
   }
 
   .wish-card .cta {
@@ -1569,28 +1746,28 @@ h1.entry { animation-delay: 0.25s; }
   }
 }
 
-/* Extra small devices (phones < 400px like iPhone SE, Galaxy A) */
-@media (max-width: 400px) {
+/* Extra small devices (< 380px) */
+@media (max-width: 380px) {
   .brand {
     font-size: 9px;
   }
 
-  .nav-link, .icon-btn {
+  .tools .icon-btn, .nav-link {
     font-size: 8px;
-    padding: 5px 8px;
+    padding: 4px 8px;
   }
 
   h1 {
-    font-size: clamp(36px, 10vw, 56px);
+    font-size: clamp(34px, 10vw, 48px);
   }
 
   .hero .sub {
-    font-size: 12.5px;
+    font-size: 12px;
   }
 
   .cta {
-    font-size: 11.5px;
-    padding: 12px 22px;
+    font-size: 11px;
+    padding: 12px 20px;
   }
 }
 
