@@ -302,14 +302,16 @@ function launchShootingStar(startX, startY) {
 addEventListener('pointermove', e => {
   pointer = { x: e.clientX, y: e.clientY, active: true };
   if (!isPaused) {
-    cursorTrail.push({ x: e.clientX, y: e.clientY, life: 550 });
-    cursorTrail = cursorTrail.slice(-35);
-    burst(e.clientX, e.clientY, 2);
+    if (e.pointerType !== 'touch') {
+      cursorTrail.push({ x: e.clientX, y: e.clientY, life: 550 });
+      cursorTrail = cursorTrail.slice(-35);
+      burst(e.clientX, e.clientY, 2);
 
-    // 3D Tilt on main title
-    const title = document.getElementById('title');
-    if (title) {
-      title.style.transform = `rotateY(${(e.clientX / width - 0.5) * 6}deg) rotateX(${-(e.clientY / height - 0.5) * 5}deg)`;
+      // 3D Tilt on main title for mouse pointer
+      const title = document.getElementById('title');
+      if (title) {
+        title.style.transform = `rotateY(${(e.clientX / width - 0.5) * 6}deg) rotateX(${-(e.clientY / height - 0.5) * 5}deg)`;
+      }
     }
   }
 }, { passive: true });
@@ -319,7 +321,8 @@ addEventListener('pointerout', e => {
 });
 
 addEventListener('pointerdown', e => {
-  burst(e.clientX, e.clientY, 40);
+  const count = e.pointerType === 'touch' ? 24 : 40;
+  burst(e.clientX, e.clientY, count);
 }, { passive: true });
 
 addEventListener('resize', resize);

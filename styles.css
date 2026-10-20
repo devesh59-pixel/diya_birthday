@@ -662,10 +662,15 @@ h1 em {
   border-radius: 20px;
 }
 
-.wish-flip-card:hover .card-inner,
 .wish-flip-card:focus-visible .card-inner,
 .wish-flip-card.flipped .card-inner {
   transform: rotateY(180deg);
+}
+
+@media (hover: hover) {
+  .wish-flip-card:hover .card-inner {
+    transform: rotateY(180deg);
+  }
 }
 
 .card-front, .card-back {
@@ -1210,70 +1215,382 @@ h1.entry { animation-delay: 0.25s; }
 }
 
 /* ==========================================================================
-   Responsive Adaptations
+   Responsive Adaptations for Phones & Tablets
    ========================================================================== */
 @media (max-width: 768px) {
+  /* Prevent any horizontal overflow */
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  /* Fixed, sleek glassmorphic top navigation */
   .topbar {
-    top: 18px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 10px 14px;
+    background: rgba(6, 5, 17, 0.78);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    z-index: 80;
   }
+
   .brand {
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: 1.2px;
+    white-space: nowrap;
   }
+
   .tools {
+    display: flex;
     gap: 6px;
+    align-items: center;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    max-width: calc(100% - 130px);
   }
+
+  .tools::-webkit-scrollbar {
+    display: none;
+  }
+
   .nav-link, .icon-btn {
-    font-size: 8.5px;
-    padding: 7px 10px;
+    font-size: 9px;
+    padding: 6px 9px;
+    white-space: nowrap;
+    border-radius: 20px;
   }
+
+  /* Hero Section */
   .hero {
-    padding-top: 120px;
-    min-height: 92svh;
+    padding-top: 100px;
+    padding-bottom: 70px;
+    min-height: 94svh;
   }
-  h1 {
-    font-size: clamp(56px, 14vw, 92px);
-  }
+
   .eyebrow {
-    font-size: 8.5px;
+    font-size: 9px;
     letter-spacing: 3px;
-    margin-bottom: 22px;
+    margin-bottom: 20px;
+    gap: 10px;
   }
+
   .eyebrow::before, .eyebrow::after {
-    width: 20px;
+    width: 24px;
   }
+
+  h1 {
+    font-size: clamp(44px, 12vw, 80px);
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+    padding: 0 10px;
+    max-width: 100%;
+    word-break: break-word;
+  }
+
+  h1 em {
+    font-size: 0.76em;
+    padding: 0 0.05em;
+    margin: 0;
+  }
+
   .sub {
-    font-size: 13px;
-    max-width: 300px;
+    font-size: 13.5px;
+    line-height: 1.75;
+    max-width: 320px;
+    margin: 18px auto 26px;
+    padding: 0 12px;
   }
+
+  .cta {
+    padding: 14px 28px;
+    font-size: 12.5px;
+    max-width: 90vw;
+  }
+
+  .hint {
+    font-size: 8.5px;
+    letter-spacing: 1.2px;
+    padding: 0 16px;
+    margin-top: 18px;
+  }
+
   .orbital-label {
     display: none;
   }
+
   .bottom {
-    bottom: 18px;
-    font-size: 8px;
-    letter-spacing: 1px;
+    position: relative;
+    margin-top: 36px;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    justify-content: center;
+    gap: 16px;
+    font-size: 8.5px;
   }
+
   .bottom .edition {
     display: none;
   }
-  .wishes-grid {
-    grid-template-columns: 1fr;
-    gap: 18px;
+
+  /* Candle Section */
+  .candle-section {
+    padding: 70px 16px 60px;
+    min-height: auto;
   }
-  .wish-flip-card {
-    height: 230px;
+
+  .section-header h2 {
+    font-size: clamp(28px, 7.5vw, 42px);
+    line-height: 1.2;
   }
-  .caster-input-row {
+
+  .candle-tagline, .wishes-tagline {
+    font-size: 13px;
+  }
+
+  .candle-wrap {
+    padding: 20px 20px;
+  }
+
+  .candle-aura {
+    width: 190px;
+    height: 190px;
+  }
+
+  .candle-cylinder {
+    width: 66px;
+    height: 135px;
+  }
+
+  .wax-top {
+    width: 66px;
+    height: 15px;
+  }
+
+  .candle-plate {
+    width: 110px;
+    height: 15px;
+  }
+
+  .flame-zone {
+    width: 55px;
+    height: 70px;
+  }
+
+  .candle-status {
+    font-size: 12.5px;
+    line-height: 1.6;
+    padding: 0 12px;
+  }
+
+  .candle-action-btns {
     flex-direction: column;
-    border-radius: 20px;
-    padding: 10px;
+    width: 100%;
+    max-width: 260px;
+    margin: 0 auto;
+    gap: 10px;
   }
-  .submit-wish-cta {
+
+  .candle-action-btns .cta {
     width: 100%;
   }
-  .candle-section {
-    padding-top: 70px;
+
+  /* Wishes Flip Cards */
+  .wishes-section {
+    padding: 70px 16px 60px;
+  }
+
+  .wishes-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 45px;
+  }
+
+  .wish-flip-card {
+    height: 250px;
+  }
+
+  .card-front, .card-back {
+    padding: 24px 18px;
+    border-radius: 18px;
+  }
+
+  .card-front h3 {
+    font-size: 20px;
+  }
+
+  .card-back h4 {
+    font-size: 17px;
+  }
+
+  .card-back p {
+    font-size: 13px;
+    line-height: 1.65;
+  }
+
+  /* Wish Caster */
+  .wish-caster-box {
+    padding: 28px 16px;
+    border-radius: 20px;
+  }
+
+  .wish-caster-box h3 {
+    font-size: 22px;
+  }
+
+  .wish-caster-box p {
+    font-size: 12.5px;
+    margin-bottom: 20px;
+  }
+
+  .caster-input-row {
+    flex-direction: column;
+    border-radius: 16px;
+    padding: 8px;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .caster-input-row input {
+    font-size: 16px; /* Prevents auto-zoom on iOS */
+    padding: 10px 14px;
+    width: 100%;
+  }
+
+  .submit-wish-cta {
+    width: 100%;
+    padding: 12px 20px;
+  }
+
+  .star-wish-pill {
+    font-size: 11px;
+    padding: 7px 12px;
+  }
+
+  /* Brother's Section */
+  .brother-section {
+    padding: 70px 16px 60px;
+  }
+
+  .brother-card {
+    padding: 28px 18px;
+    border-radius: 22px;
+  }
+
+  .brother-highlight {
+    font-size: 21px;
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+
+  .brother-letter p {
+    font-size: 13.5px;
+    line-height: 1.75;
+    margin-bottom: 18px;
+  }
+
+  .brother-wishes-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin: 20px 0;
+  }
+
+  .brother-wish-item {
+    padding: 13px 14px;
+    border-radius: 14px;
+    gap: 12px;
+  }
+
+  .brother-wish-item h4 {
+    font-size: 14px;
+  }
+
+  .brother-wish-item p {
+    font-size: 12px;
+    line-height: 1.55;
+  }
+
+  .brother-sign .sign-name {
+    font-size: 18px;
+  }
+
+  /* Dedication Section */
+  .dedication {
+    padding: 70px 16px 60px;
+    min-height: auto;
+  }
+
+  .dedication h2 {
+    font-size: clamp(24px, 7vw, 36px);
+  }
+
+  .dedication p {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  /* Modal */
+  .modal {
+    padding: 16px;
+  }
+
+  .wish-card {
+    padding: 32px 18px;
+    border-radius: 24px;
+  }
+
+  .wish-card .symbol {
+    font-size: 40px;
+  }
+
+  .wish-card h2 {
+    font-size: clamp(28px, 8vw, 42px);
+    letter-spacing: -1px;
+    margin: 16px 0;
+  }
+
+  .wish-card p {
+    font-size: 13px;
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .wish-card .cta {
+    width: 100%;
+  }
+}
+
+/* Extra small devices (phones < 400px like iPhone SE, Galaxy A) */
+@media (max-width: 400px) {
+  .brand {
+    font-size: 9px;
+  }
+
+  .nav-link, .icon-btn {
+    font-size: 8px;
+    padding: 5px 8px;
+  }
+
+  h1 {
+    font-size: clamp(36px, 10vw, 56px);
+  }
+
+  .hero .sub {
+    font-size: 12.5px;
+  }
+
+  .cta {
+    font-size: 11.5px;
+    padding: 12px 22px;
   }
 }
 
